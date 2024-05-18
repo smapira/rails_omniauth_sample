@@ -67,5 +67,8 @@ group :test do
 end
 
 gem 'devise'
+gem 'dotenv-rails'
 gem 'omniauth'
 gem "omniauth-rails_csrf_protection"
+gem 'omniauth-apple'
+gem 'omniauth-google-oauth2'
