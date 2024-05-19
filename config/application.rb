@@ -5,6 +5,10 @@ require "rails/all"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+# Load dotenv only in development or test environment
+if ['development', 'test'].include? ENV['RAILS_ENV']
+  Dotenv::Railtie.load
+end
 
 module RailsOmniauthSample
   class Application < Rails::Application
@@ -23,5 +27,11 @@ module RailsOmniauthSample
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    #
+    # Above the Can't verify CSRF token authenticity when returning from auth #54
+    # https://github.com/nhosoya/omniauth-apple/issues/54
+    config.action_dispatch.cookies_same_site_protection = lambda { |request|
+      request.path == '/users/auth/apple' ? :none : :lax
+    }
   end
 end
