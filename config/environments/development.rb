@@ -73,4 +73,11 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # Above the Blocked host
+  config.hosts.clear
+
+  # Above the HTTP Origin header (https://appleid.apple.com) didn't match request.base_url
+  # https://qiita.com/munaita_/items/e1d36fac9515654a76de
+  config.action_controller.forgery_protection_origin_check = false
 end

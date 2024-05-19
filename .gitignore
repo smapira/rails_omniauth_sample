@@ -72,3 +72,6 @@ yarn-debug.log*
 /config/master.key
 
 vendor/*
+.idea
+config/AuthKey_98LQLCTZBQ.p8
+Makefile
